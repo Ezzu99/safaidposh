@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-safaidposh-staging-80620-authRole",
+      "UnauthRoleArn": "arn:aws:iam::709153196544:role/amplify-safaidposh-staging-80620-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::709153196544:role/amplify-safaidposh-staging-80620-authRole",
+      "Region": "sa-east-1",
+      "DeploymentBucketName": "amplify-safaidposh-staging-80620-deployment",
+      "UnauthRoleName": "amplify-safaidposh-staging-80620-unauthRole",
+      "StackName": "amplify-safaidposh-staging-80620",
+      "StackId": "arn:aws:cloudformation:sa-east-1:709153196544:stack/amplify-safaidposh-staging-80620/946be180-cddc-11ec-b186-06930e64a2b2",
+      "AmplifyAppId": "d50x9wo5x66bl"
+    },
+    "categories": {
+      "auth": {
+        "SafaidPosh": {}
+      }
+    }
+  }
+}

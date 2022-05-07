@@ -1,0 +1,100 @@
+enum BookType {
+  SCIFI
+  FANTASY
+  ROMANCE
+  FICTION
+}
+
+type Books @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  title: String
+  author: String
+  barcode: String
+  bookType: BookType
+  Bookshelves: Bookshelves @hasOne
+}
+
+enum FridgeItemType {
+  DAIRY
+  MEAT
+  VEGETABLE
+  FRUIT
+}
+
+type FridgeItems @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  barcode: String
+  itemType: FridgeItemType
+  Fridges: Fridges @hasOne
+}
+
+enum TransactionType {
+  DONATE
+  TAKE
+}
+
+type Transactions @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  transaction_type: TransactionType
+  timestamp: AWSTimestamp
+  FridgeItems: FridgeItems @hasOne
+  Books: Books @hasOne
+  Users: Users @hasOne
+}
+
+type Users @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  username: String
+  email: AWSEmail
+  phone_num: AWSPhone
+}
+
+type Services {
+  water: Boolean
+  clothes: Boolean
+  fridge: Boolean
+  bookshelf: Boolean
+  washroom: Boolean
+}
+
+type Bookshelves @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  book_count: Int
+}
+
+enum FridgeStatus {
+  POWERED_ON
+  POWERED_OFF
+  MALFUNCTION
+}
+
+enum FridgeItemStatus {
+  EMPTY
+  HAS_ITEM
+}
+
+type Fridges @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  model: String
+  has_item: FridgeItemStatus
+  status: FridgeStatus
+}
+
+type Location {
+  address: String
+  longitude: Float
+  latitude: Float
+}
+
+type Zones @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  location: Location
+  openedAt: AWSDateTime
+  Manager: Users @hasOne
+  Fridges: Fridges @hasOne
+  Bookshelves: Bookshelves @hasOne
+  services: Services
+}
+ 
