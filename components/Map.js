@@ -47,7 +47,9 @@ export default function Map(props={}) {
 				}}
 				style={{
 					width: "100%",
-					height: "100%"
+					height: "100%",
+					borderRadius: '12px',
+					boxShadow: '0 0 18px 8px #eeeeee'
 				}}
 			>
 				<Geocoder />

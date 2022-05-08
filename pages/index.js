@@ -15,6 +15,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Map from '../components/Map';
 import { useRouter } from 'next/router';
+import '@aws-amplify/ui-react/styles.css';
+import { teal } from '@mui/material/colors';
+import LoadingPage from '../components/loading';
 
 export default function Index() {
 	const router = useRouter();
@@ -73,12 +76,13 @@ export default function Index() {
 					<title>SafaidPosh</title>
 					<meta name="description" content="" />
 				</Head>
-				<AppBar position="static">
+				<AppBar position="static" sx={{ backgroundColor: '#fff', boxShadow: 'none', borderBottom: '1px solid #dedede' }}>
 					<Container maxWidth="xl">
-						<Toolbar disableGutters>
+						<Toolbar disableGutters sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
 							<Typography>
 								<Logo />
 							</Typography>
+							<Button sx={{ color: 'teal' }}>About us</Button>
 						</Toolbar>
 					</Container>
 				</AppBar>
@@ -88,21 +92,28 @@ export default function Index() {
 					gap={"10px"}
 					margin={"10px 20px"}
 				>
-					<View rowSpan={7} backgroundColor={tokens.colors.purple[40]}>
-						<Typography variant="h4" color={"#FFF"}>
-							Message in bold goes here
-						</Typography>
-						<Typography>
-							Other text about mission etc. goes here
-						</Typography>
-						<Authenticator services={services} />
+					<View rowSpan={7}>
+						<Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
+							<Box sx={{ position: 'relative' }}>
+								<Typography variant="h4" fontWeight='bold' color={"#333"} sx={{ marginRight: '46px' }}>
+									SafaidPosh plans to provide an <Typography style={{display: 'inline-block'}} sx={{ color: 'teal' }} variant="h4" fontWeight='bold'>environment</Typography> for those in need
+								</Typography>
+								<Typography color={"#555"} sx={{ marginRight: '46px' }}>
+									We aim to provide SafaidPosh Centers, a concept that combines multiple facilities, ranging from Wall of Kindness' to Community Fridges, all in a single zone, that allows you to take whatever you want, no questions asked. It also allows donators to do walk-in donations. Everyone deserves clean water, good food, good clothes and a good life.
+								</Typography>
+							</Box>
+							<Authenticator services={services} />
+						</Box>
 					</View>
 					<View rowSpan={7}>
 						<Map />
 					</View>
 					<View columnSpan={2} rowSpan={1}>
-						<Divider orientation="horizontal" />
-						Footer goes here
+						<Box sx={{ width: '100%', height: '100%', borderTop: '1px solid #dedede', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+							<Typography sx={{ color: teal[400], whiteSpace: 'pre' }}>
+								DevDay      |      2022
+							</Typography>
+						</Box>
 					</View>
 				</Grid>
 			</>

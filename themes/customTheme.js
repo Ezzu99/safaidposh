@@ -1,5 +1,5 @@
 import { createTheme } from '@aws-amplify/ui';
-import { deepPurple, pink, grey, common  } from '@mui/material/colors';
+import { deepPurple, pink, grey, common, teal  } from '@mui/material/colors';
 
 export default createTheme({
     name: 'custom-theme',
@@ -7,7 +7,10 @@ export default createTheme({
         colors: {
             background: {
                 primary: {
-                    value: grey["800"]
+                    value: grey["100"]
+                },
+                tertiary: {
+                    value: common['white']
                 }
             },
             purple: {
@@ -61,9 +64,26 @@ export default createTheme({
                     value: pink["A200"]
                 }
             },
+            teal: {
+                "10": {
+                    value: teal[100]
+                },
+                "20": {
+                    value: teal[200]
+                },
+                "40": {
+                    value: teal[400]
+                },
+                "60": {
+                    value: teal[600]
+                },
+                "80": {
+                    value: teal[800]
+                }
+            },
             font: {
                 primary: {
-                    value: common["white"]
+                    value: common["black"]
                 },
                 secondary: {
                     value: grey["500"]
