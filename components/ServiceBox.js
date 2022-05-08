@@ -10,9 +10,14 @@ import LocalDrinkIcon from '@mui/icons-material/LocalDrink';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import { amber, blue, grey, brown, deepOrange, lime } from '@mui/material/colors';
 
+import Button from '@mui/material/Button';
+import { DataStore } from 'aws-amplify';
+import { Books, FridgeItems, Fridges, Bookshelves } from '../src/models';
+
 export default function ServiceBox(props={}) {
 	const service = props?.service ?? 'water';
 	const availability = props?.availability ?? false;
+	const { itemsHandler, serviceHandler, zone } = props;
 
 	const serviceColors = {
 		'water': blue["400"],
@@ -30,17 +35,40 @@ export default function ServiceBox(props={}) {
 		'clothes':  <CheckroomIcon sx={{ color: availability ? serviceColors['clothes'] : grey["600"] }} />,
 	};
 
+	async function fetchItems() {
+		console.log(zone);
+		const data = (await DataStore.query(service === 'fridge' ? FridgeItems : Books)).filter(c => service === 'fridge' ? (c.fridgeItemsFridgesId === zone.zonesFridgesId) : (c.booksBookshelvesId === zone.zonesBookshelvesId));
+		console.log(data);
+		const bookData = data.map((d, index) => ({
+			id: index,
+			title: d.title,
+			author: d.author,
+			barcode: d.barcode,
+			type: d.bookType
+		}));
+		const fridgeData = data.map((d, index) => ({
+			id: index,
+			name: d.name,
+			barcode: d.barcode,
+			type: d.itemType
+		}));
+		itemsHandler(service === 'fridge' ? fridgeData : bookData);
+		serviceHandler(service === 'fridge' ? "Fridge" : service === "bookshelf" ? "Bookshelf" : "");
+	}
+
 	return (
-		<Card sx={{ maxWidth: 345 }}>
-			<CardContent>
-				<Typography sx={{ fontSize: 16 }}>
-					{
-						serviceIcons[service]
-					}
-				</Typography>
-				<Typography sx={{ fontSize: 14 }} color={availability ? serviceColors[service] : "text.secondary" } gutterBottom>
-					{ service.toUpperCase() }
-				</Typography>
+		<Card sx={{ maxWidth: 200 }}>
+			<CardContent sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+				<Button variant="outline" onClick={fetchItems}>
+					<Typography sx={{ fontSize: 16 }}>
+						{
+							serviceIcons[service]
+						}
+					</Typography>
+					<Typography sx={{ fontSize: 14 }} fontWeight={"bold"} color={availability ? serviceColors[service] : "text.secondary" } gutterBottom>
+						{ service.toUpperCase() }
+					</Typography>
+				</Button>
 			</CardContent>
 		</Card>
 	);

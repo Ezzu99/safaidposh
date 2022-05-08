@@ -3,6 +3,7 @@ import ServiceBox from './ServiceBox';
 
 export default function Services(props={}) {
 	const services = props?.services ?? {};
+	const { itemsHandler, serviceHandler, zone } = props;
 
 	return (
 		<Grid
@@ -16,7 +17,7 @@ export default function Services(props={}) {
 						xs={4}
 						key={index}
 					>
-						<ServiceBox service={service} availability={services[service]} />
+						<ServiceBox service={service} availability={services[service]} zone={zone} itemsHandler={itemsHandler} serviceHandler={serviceHandler} />
 					</Grid>
 				))
 			}

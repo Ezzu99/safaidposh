@@ -8,7 +8,7 @@ import { Zones } from '../src/models';
 import Services from './Services';
 
 export default function Map(props={}) {
-	const { interactiveMode } = props;
+	const { interactiveMode, itemsHandler, serviceHandler } = props;
 	const [zones, setZones] = useState([]);
 	const [selectedZone, setSelectedZone] = useState("");
 	const [iMode, setIMode] = useState(interactiveMode ?? false);
@@ -49,7 +49,8 @@ export default function Map(props={}) {
 					width: "100%",
 					height: "100%",
 					borderRadius: '12px',
-					boxShadow: '0 0 18px 8px #eeeeee'
+					boxShadow: '0 0 18px 8px #eeeeee',
+					marginBottom: "20px"
 				}}
 			>
 				<Geocoder />
@@ -57,7 +58,7 @@ export default function Map(props={}) {
 					zones.map((zone) => <Marker key={zone.id} latitude={zone.location.latitude} longitude={zone.location.longitude} onClick={({ originalEvent }) => handleMarkerClick(originalEvent, zone.id)} />)
 				}
 			</MapView>
-			{ showServices && <Services services={selectedZone.services} /> }
+			{ showServices && <Services services={selectedZone.services} zone={selectedZone} itemsHandler={itemsHandler} serviceHandler={serviceHandler} /> }
 		</>
 	);
 }
