@@ -41,9 +41,9 @@ export default function Map(props={}) {
 		<>
 			<MapView
 				initialViewState={{
-					latitude: 24.85,
-					longitude: 67.26,
-					zoom: 14
+					latitude: 24.8565,
+					longitude: 67.2645,
+					zoom: 15.5
 				}}
 				style={{
 					width: "100%",
@@ -55,7 +55,7 @@ export default function Map(props={}) {
 			>
 				<Geocoder />
 				{
-					zones.map((zone) => <Marker key={zone.id} latitude={zone.location.latitude} longitude={zone.location.longitude} onClick={({ originalEvent }) => handleMarkerClick(originalEvent, zone.id)} />)
+					zones.map((zone) => <Marker key={zone.id} latitude={zone.location.latitude} longitude={zone.location.longitude} color={'teal'} onClick={({ originalEvent }) => handleMarkerClick(originalEvent, zone.id)} />)
 				}
 			</MapView>
 			{ showServices && <Services services={selectedZone.services} zone={selectedZone} itemsHandler={itemsHandler} serviceHandler={serviceHandler} /> }

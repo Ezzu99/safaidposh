@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import { teal } from '@mui/material/colors';
 import ItemTable from "../components/ItemTable";
 import { useState } from 'react';
+import { Box } from "@mui/material";
 
 export default function Dashboard() {
 	const { user, signOut } = useAuthenticator((context) => [context.user]);
@@ -33,28 +34,29 @@ export default function Dashboard() {
 				<title>SafaidPosh</title>
 				<meta name="description" content="" />
 			</Head>
-			<AppBar position="static" sx={{ backgroundColor: '#fff', boxShadow: 'none', borderBottom: '1px solid #dedede' }}>
-				<Container maxWidth="xl" sx={{ marginLeft: "0px" }}>
-					<Toolbar disableGutters sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-						<Typography color={'teal'} fontWeight={"bold"} variant="h5">
-							<Typography component="span" fontSize={"1.2em"} fontWeight={"bold"}>S</Typography>AFAID<Typography component="span" fontSize={"1.2em"} fontWeight={"bold"}>P</Typography>OSH
-						</Typography>
-						<Button variant="contained" color="error" onClick={handleSignOut}>Sign Out</Button>
-					</Toolbar>
-				</Container>
-			</AppBar>
-			<Grid container margin={"10px 20px 0px 20px"}>
-				<Grid item xs={8}>
-					<View style={{ width: "50vw", height: "50vh", margin: "10px"}}>
+			<Box sx={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>
+				<AppBar position="static" sx={{ backgroundColor: '#fff', boxShadow: 'none', borderBottom: '1px solid #dedede' }}>
+					<Container maxWidth="xl" sx={{ marginLeft: "0px" }}>
+						<Toolbar disableGutters sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+							<Typography color={'teal'} fontWeight={"bold"} variant="h5">
+								<Typography component="span" fontSize={"1.2em"} fontWeight={"bold"}>S</Typography>AFAID<Typography component="span" fontSize={"1.2em"} fontWeight={"bold"}>P</Typography>OSH
+							</Typography>
+							<Button variant="contained" color="error" onClick={handleSignOut}>Sign Out</Button>
+						</Toolbar>
+					</Container>
+				</AppBar>
+				<Box sx={{ padding: '12px', paddingX: '24px', display: 'flex', gap: '18px', justifyContent: 'center', alignItems: 'flex-start' }}>
+					<Box sx={{ width: '120%', height: '380px'}}>
 						<Map interactiveMode={true} itemsHandler={setItemData} serviceHandler={setSelectedService} />
-					</View>
-				</Grid>
-				{ selectedService && ["Fridge", "Bookshelf"].includes(selectedService) && (
-					<Grid item xs={4}>
-						<ItemTable tableType={selectedService} tableRows={itemData} />
-					</Grid>
-				)}
-			</Grid>
+					</Box>
+					<Box sx={{ width: '80%' }}>
+						{ selectedService && ["Fridge", "Bookshelf"].includes(selectedService) && (
+							<ItemTable tableType={selectedService} tableRows={itemData} />
+						)}
+					</Box>
+				</Box>
+					
+			</Box>
 		</>
 	);
 }

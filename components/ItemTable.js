@@ -12,12 +12,12 @@ export default function ItemTable(props) {
 		{
 			field: "barcode",
 			headerName: "Barcode (ISBN-11)",
-			width: 70
+			width: 140
 		},
 		{
 			field: "type",
 			headerName: "Item Type",
-			width: 70
+			width: 110
 		},
 	];
 
@@ -25,29 +25,29 @@ export default function ItemTable(props) {
 		{
 			field: "title",
 			headerName: "Book Title",
-			width: 130
+			width: 200
 		},
 		{
 			field: "author",
 			headerName: "Book Author",
-			width: 100
+			width: 150
 		},
 		{
 			field: "barcode",
 			headerName: "Barcode (ISBN-11)",
-			width: 70
+			width: 140
 		},
 		{
 			field: "type",
 			headerName: "Book Type",
-			width: 70
+			width: 90
 		}
 	];
 
 	console.log(tableRows, tableType)
 
 	return (
-		<div style={{ height: 400, width: '100%' }}>
+		<div style={{ height: '80vh', width: '100%' }}>
 			<DataGrid
 				rows={tableRows}
 				columns={tableType === "Fridge" ? fridgeColumns : bookColumns}

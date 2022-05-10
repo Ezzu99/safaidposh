@@ -28,11 +28,11 @@ export default function ServiceBox(props={}) {
 	};
 
 	const serviceIcons = {
-		'water': <LocalDrinkIcon sx={{ color: availability ? serviceColors['water'] : grey["600"] }} />,
-		'bookshelf': <LocalLibraryIcon sx={{ color: availability ? serviceColors['bookshelf'] : grey["600"] }} />,
-		'fridge': <RestaurantIcon sx={{ color: availability ? serviceColors['fridge'] : grey["600"] }} />,
-		'washroom': <ShowerIcon sx={{ color: availability ? serviceColors['washroom'] : grey["600"] }} />,
-		'clothes':  <CheckroomIcon sx={{ color: availability ? serviceColors['clothes'] : grey["600"] }} />,
+		'water': <LocalDrinkIcon sx={{ color: availability ? serviceColors['water'] : grey["600"], marginRight: '12px' }} />,
+		'bookshelf': <LocalLibraryIcon sx={{ color: availability ? serviceColors['bookshelf'] : grey["600"], marginRight: '12px' }} />,
+		'fridge': <RestaurantIcon sx={{ color: availability ? serviceColors['fridge'] : grey["600"], marginRight: '12px' }} />,
+		'washroom': <ShowerIcon sx={{ color: availability ? serviceColors['washroom'] : grey["600"], marginRight: '12px' }} />,
+		'clothes':  <CheckroomIcon sx={{ color: availability ? serviceColors['clothes'] : grey["600"], marginRight: '12px' }} />,
 	};
 
 	async function fetchItems() {
@@ -57,15 +57,15 @@ export default function ServiceBox(props={}) {
 	}
 
 	return (
-		<Card sx={{ maxWidth: 200 }}>
+		<Card sx={{ boxShadow: '0 2px 18px #dedede', borderRadius: '12px' }}>
 			<CardContent sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-				<Button variant="outline" onClick={fetchItems}>
+				<Button variant="outline" onClick={fetchItems} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 					<Typography sx={{ fontSize: 16 }}>
 						{
 							serviceIcons[service]
 						}
 					</Typography>
-					<Typography sx={{ fontSize: 14 }} fontWeight={"bold"} color={availability ? serviceColors[service] : "text.secondary" } gutterBottom>
+					<Typography sx={{ fontSize: 14 }} fontWeight={"bold"} color={availability ? serviceColors[service] : "text.secondary" }>
 						{ service.toUpperCase() }
 					</Typography>
 				</Button>

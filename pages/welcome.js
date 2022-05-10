@@ -71,7 +71,7 @@ export default function Welcome() {
 					</Container>
 				</AppBar>
 				<Grid
-					templateColumns={"2fr 1.5fr"}
+					templateColumns={"2fr 1.75fr"}
 					autoRows={"9vh"}
 					gap={"10px"}
 					padding={"10px 20px 0px 20px"}
@@ -95,14 +95,12 @@ export default function Welcome() {
 					<View rowSpan={7}>
 						<Map />
 					</View>
-					<View columnSpan={2} rowSpan={1}>
-						<Box sx={{ width: '100%', marginTop: "50px", paddingTop: "20px", borderTop: '1px solid #dedede', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-							<Typography sx={{ color: teal[400], whiteSpace: 'pre' }}>
-								DevDay      |      2022
-							</Typography>
-						</Box>
-					</View>
 				</Grid>
+				<Box sx={{ width: '100%', height: '60px', position: 'absolute', bottom: '0', borderTop: '1px solid #dedede', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+					<Typography sx={{ color: teal[400], whiteSpace: 'pre' }}>
+						DevDay      |      2022
+					</Typography>
+				</Box>
 			</>
 		);
 	}
